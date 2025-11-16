@@ -6,6 +6,7 @@ This repository consists of the implementation CBS of multi-agent path-planning 
 
 ## Go to the virtual env
 ```
+python3 -m venv .venv 
 source .venv/bin/activate
 ```
 
