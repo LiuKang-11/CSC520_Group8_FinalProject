@@ -27,7 +27,7 @@ Conclict-Based Search (CBS), is a multi-agent global path planner.
 Run:
 
 ``` 
-cd ./centralized/cbs
+cd cbs
 python3 cbs.py input.yaml output.yaml
 ```
 
