@@ -29,7 +29,7 @@ Run:
 
 ```shell
 cd cbs
-python3 cbs.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x3.yaml
+python3 cbs.py ../benchmark/inputs/input_3x3.yaml ../benchmark/outputs/output_3x3.yaml
 ```
 
 #### Results
