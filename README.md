@@ -46,5 +46,5 @@ python3 visualize.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x
 #### References
 
 - [Conflict-based search for optimal multi-agent pathfinding](https://www.sciencedirect.com/science/article/pii/S0004370214001386)
-- [Suboptimal Variants of the Conflict-Based Search Algorithmfor the Multi-Agent Pathfinding Problem](https://ojs.aaai.org/index.php/SOCS/article/view/18315/18106)
+- [Suboptimal Variants of the Conflict-Based Search Algorithmfor the Multi-Agent Pathfinding Problem](https://dl.acm.org/doi/10.5555/3006652.3006817)
 
