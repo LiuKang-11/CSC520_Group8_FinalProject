@@ -27,17 +27,17 @@ Conclict-Based Search (CBS), is a multi-agent global path planner.
 
 Run:
 
-``` 
+```shell
 cd cbs
-python3 cbs.py input.yaml output.yaml
+python3 cbs.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x3.yaml
 ```
 
 #### Results
 
 To visualize the generated results:
 
-``` shell
-python3 ../visualize.py input.yaml output.yaml
+```shell
+python3 visualize.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x3.yaml
 ```
 
 
