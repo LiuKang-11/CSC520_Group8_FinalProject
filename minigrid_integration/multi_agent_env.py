@@ -125,7 +125,7 @@ class MultiAgentMinigrid(MiniGridEnv):
                 reward = self._execute_action(agent_id, action)
                 rewards[agent_id] = reward
 
-        collision = self._check_collisions()
+        collision = self._check_collisions(old_positions)
         if collision:
             self.agent_positions = old_positions
             rewards = [-1] * self.num_agents
@@ -183,10 +183,14 @@ class MultiAgentMinigrid(MiniGridEnv):
 
         return reward
 
-    def _check_collisions(self):
+    def _check_collisions(self, old_positions):
         for i in range(self.num_agents):
             for j in range(i + 1, self.num_agents):
                 if self.agent_positions[i] == self.agent_positions[j]:
+                    return True
+                
+                if old_positions and self.agent_positions[i] == old_positions[j] and \
+                   self.agent_positions[j] == old_positions[i]:
                     return True
         return False
 

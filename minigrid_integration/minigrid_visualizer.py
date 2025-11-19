@@ -5,9 +5,10 @@ from pathlib import Path
 
 
 class MinigridVisualizer:
-    def __init__(self, env, solution=None):
+    def __init__(self, env, solution=None, collision_steps=None):
         self.env = env
         self.solution = solution
+        self.collision_steps = set(collision_steps) if collision_steps else set()
         self.agent_colors = ['red', 'blue', 'green', 'orange', 'purple']
 
     def render_static(self, show_paths=True, save_path=None):
@@ -215,11 +216,17 @@ class MinigridVisualizer:
                 positions[i] = pos
 
         collision_agents = set()
+        
         for i in positions:
             for j in positions:
                 if i < j and positions[i] == positions[j]:
                     collision_agents.add(i)
                     collision_agents.add(j)
+        
+        if frame in self.collision_steps:
+            for i in range(self.env.num_agents):
+                if f'agent{i}' in self.solution:
+                    collision_agents.add(i)
 
         for i in range(self.env.num_agents):
             if i in collision_agents:
