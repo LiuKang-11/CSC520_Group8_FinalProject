@@ -40,6 +40,12 @@ To visualize the generated results:
 python3 visualize.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x3.yaml
 ```
 
+#### Collaborators
+- Derek Curry
+- Leslie Liu
+- Kevin Washington
+- Krishna Pallavalli
+
 
 
 
