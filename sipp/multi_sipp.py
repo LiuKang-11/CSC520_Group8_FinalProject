@@ -11,8 +11,46 @@ See the article: 10.1109/ICRA.2011.5980306
 import argparse
 import yaml
 from math import fabs
-from graph_generation import SippGraph, State
-from sipp import SippPlanner
+from sipp.graph_generation import SippGraph, State
+from sipp.sipp import SippPlanner
+
+
+class MultiSIPP:
+
+    def __init__(self, dimension, agents, obstacles):
+        self.dimension = dimension
+        self.agents = agents
+        self.obstacles = obstacles
+
+    def search(self):
+        map_data = {
+            'map': {
+                'dimensions': self.dimension,
+                'obstacles': self.obstacles
+            },
+            'agents': self.agents,
+            'dynamic_obstacles': {}
+        }
+
+        solution = {}
+
+        for i, agent in enumerate(self.agents):
+            sipp_planner = SippPlanner(map_data, i)
+
+            if sipp_planner.compute_plan():
+                plan = sipp_planner.get_plan()
+                agent_name = agent['name']
+
+                if agent_name in plan:
+                    path = [(state['x'], state['y']) for state in plan[agent_name]]
+                    solution[agent_name] = path
+
+                    map_data['dynamic_obstacles'][agent_name] = plan[agent_name]
+            else:
+                return None
+
+        return solution
+
 
 def main():
     parser = argparse.ArgumentParser()

@@ -11,7 +11,7 @@ See the article: DOI: 10.1109/ICRA.2011.5980306
 import argparse
 import yaml
 from math import fabs
-from graph_generation import SippGraph, State
+from sipp.graph_generation import SippGraph, State
 
 class SippPlanner(SippGraph):
     def __init__(self, map, agent_id):
