@@ -56,12 +56,9 @@ python3 visualize.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x
 
 #### Collaborators
 - Derek Curry
-- Leslie Liu
-- Kevin Washington
+- Kevin Lira
 - Krishna Pallavalli
-
-
-
+- Leslie Liu
 
 #### References
 
