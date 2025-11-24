@@ -18,6 +18,20 @@ Install the necessary dependencies by running.
 python3 -m pip install -r requirements.txt
 ```
 
+### Baseline
+There are 5 algorithms for comparison:
+- Independent A*
+- Greedy
+- CBS (A*)
+- CBS (Dijkstra)
+- ECBS (weighted A*)
+
+### Run demo in Minigrid Environment
+To generate results for all algorithms and scenarios run  
+
+```
+python3 minigrid_integration/demo.py all
+```
 
 ### Conflict Based Search
 
