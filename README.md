@@ -27,23 +27,30 @@ Conclict-Based Search (CBS), is a multi-agent global path planner.
 
 Run:
 
-``` 
+```shell
 cd cbs
-python3 cbs.py input.yaml output.yaml
+python3 cbs.py ../benchmark/inputs/input_3x3.yaml ../benchmark/outputs/output_3x3.yaml
 ```
 
 #### Results
 
 To visualize the generated results:
 
-``` shell
-python3 ../visualize.py input.yaml output.yaml
+```shell
+python3 visualize.py benchmark/inputs/input_3x3.yaml benchmark/outputs/output_3x3.yaml
 ```
 
+#### Collaborators
+- Derek Curry
+- Leslie Liu
+- Kevin Washington
+- Krishna Pallavalli
 
 
 
-#### Reference
+
+#### References
 
 - [Conflict-based search for optimal multi-agent pathfinding](https://www.sciencedirect.com/science/article/pii/S0004370214001386)
+- [Suboptimal Variants of the Conflict-Based Search Algorithmfor the Multi-Agent Pathfinding Problem](https://dl.acm.org/doi/10.5555/3006652.3006817)
 
