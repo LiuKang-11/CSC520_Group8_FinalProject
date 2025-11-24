@@ -5,6 +5,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 import yaml
 
 from cbs.cbs import CBS, Environment
+from cbs.cbs_dijkstra import CBS as CBSDijkstra
+from cbs.ecbs import ECBS
 from sipp.multi_sipp import MultiSIPP
 
 
@@ -23,6 +25,10 @@ class MinigridAdapter:
             self.solution = self._plan_with_cbs(grid_state)
         elif self.algorithm == 'sipp':
             self.solution = self._plan_with_sipp(grid_state)
+        elif self.algorithm == 'cbs_dijkstra':
+            self.solution = self._plan_with_cbs_dijkstra(grid_state)
+        elif self.algorithm == 'ecbs':
+            self.solution = self._plan_with_ecbs(grid_state)
         elif self.algorithm == 'independent':
             self.solution = self._plan_with_independent_astar(grid_state)
         elif self.algorithm == 'greedy':
@@ -163,6 +169,42 @@ class MinigridAdapter:
                     'y': pos[1]
                 })
             solution[agent_name] = schedule
+
+        return solution
+
+    def _plan_with_cbs_dijkstra(self, grid_state):
+        env = Environment(
+            dimension=grid_state['dimension'],
+            agents=grid_state['agents'],
+            obstacles=grid_state['obstacles']
+        )
+
+        cbs = CBSDijkstra(env)
+
+        solution = cbs.search()
+
+        if not solution:
+            print("CBS (Dijkstra) failed to find solution!")
+            return None
+
+        return solution
+
+    def _plan_with_ecbs(self, grid_state):
+        env = Environment(
+            dimension=grid_state['dimension'],
+            agents=grid_state['agents'],
+            obstacles=grid_state['obstacles']
+        )
+
+        ecbs = ECBS(env, w_low=1.5, w_high=1.5)
+
+        solution_internal = ecbs.search()
+
+        if not solution_internal:
+            print("ECBS failed to find solution!")
+            return None
+            
+        solution = ecbs.generate_plan(solution_internal)
 
         return solution
 

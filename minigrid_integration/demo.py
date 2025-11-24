@@ -278,6 +278,20 @@ def save_metrics_to_file(metrics, scenario_name, algorithm):
     print(f"\n  Metrics saved: {filename}")
 
 
+def save_combined_metrics(results):
+    output_dir = 'minigrid_integration/output'
+    os.makedirs(output_dir, exist_ok=True)
+    
+    filename = f'{output_dir}/combined_metrics.json'
+    
+    valid_results = [r for r in results if r is not None]
+    
+    with open(filename, 'w') as f:
+        json.dump(valid_results, f, indent=2)
+        
+    print(f"\n  Combined metrics saved: {filename}")
+
+
 def congested_intersection(algorithm='cbs'):
     print("\n" + "="*60)
     print(f"SCENARIO 4: Congested Intersection ({algorithm})")
@@ -320,27 +334,30 @@ def congested_intersection(algorithm='cbs'):
 
 
 def main():
-    algorithms = ['cbs', 'independent', 'greedy']
-    
+    algorithms = ['cbs', 'cbs_dijkstra', 'ecbs', 'independent', 'greedy']
+    results = []
+
     if len(sys.argv) > 1:
         scenario = sys.argv[1]
         if len(sys.argv) > 2:
             algo = sys.argv[2]
             if algo in algorithms:
-                run_scenario(scenario, algo)
+                results.append(run_scenario(scenario, algo))
             else:
                 print(f"Unknown algorithm: {algo}")
         elif scenario == 'all':
             for i in range(1, 5):
                 for algo in algorithms:
-                    run_scenario(str(i), algo)
+                    results.append(run_scenario(str(i), algo))
         else:
             for algo in algorithms:
-                run_scenario(scenario, algo)
+                results.append(run_scenario(scenario, algo))
     else:
         for i in range(1, 5):
             for algo in algorithms:
-                run_scenario(str(i), algo)
+                results.append(run_scenario(str(i), algo))
+
+    save_combined_metrics(results)
 
 
 
